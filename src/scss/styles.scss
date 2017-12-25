@@ -3,7 +3,7 @@
 
 
 .first{
-  ist-style-type: none;
+  list-style-type: none;
     /* list-style-type: none; */
     height: 50px;
     /* width: 100%; */
@@ -20,4 +20,16 @@
     /* height: 50px; */
     align-items: center;
 
+}
+
+.team {
+  list-style-type: none;
+  padding: 1%;
+  background-color: lightgray;
+  border-radius: 2%;
+  margin: 1%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 50px;
 }

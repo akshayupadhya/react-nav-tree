@@ -31,9 +31,6 @@ export default class Season extends React.Component{
     .catch(e=>console.log(e))
   }
 
-  // componentDidMount(){
-  //   this.getTeams(this.props.season)
-  // }
 
   render(){
     return(
@@ -42,7 +39,7 @@ export default class Season extends React.Component{
         {this.props.season}
       </li>
       <ul className={this.toggleClass()}>
-          {this.state.teams.map((team,index)=> < Team teamName={team} key={index}/>)}
+          {this.state.teams.map((team,index)=> < Team teamName={team} season={this.props.season} key={index}/>)}
       </ul>
     </div>
     )
