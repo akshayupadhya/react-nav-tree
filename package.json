@@ -19,6 +19,7 @@
   },
   "homepage": "https://gitlab.com/akshay_upadhya_/webpack_boilerplate#README",
   "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
