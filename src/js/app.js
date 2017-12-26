@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 
 require("bootstrap/dist/css/bootstrap.css")
 import '../scss/styles.scss'
-//import 'bootstrap'
 
 import Season from '../components/season'
 
@@ -35,11 +34,12 @@ export default class App extends Component {
   }
   render() {
     return ( 
-    <div className="parent">
-  
+    <div className="parent d-flex col-12">
     <ul className="seasons col-4">
-    {this.state.seasons.map((year,index)=><Season key={index} season={year} id={index.toString()} />)}  
+    {this.state.seasons.map((year,index)=><Season key={index} season={year} id={index.toString()} />)}
     </ul>
+    <div className="col-8" id="showPlayer">
+    </div>
     </div>)
   }
 }

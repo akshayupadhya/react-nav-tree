@@ -1,6 +1,8 @@
 import React from 'react'
 
 import Player from './player'
+import Arrow from './arrow'
+
 
 export default class Team extends React.Component{
   constructor(props){
@@ -36,10 +38,10 @@ export default class Team extends React.Component{
      <div className="players">
    
      <li className="team" onClick={()=>{this.getPlayers(this.props.season,this.props.teamName);this.setState({isClicked:!this.state.isClicked})}}>
-      {this.props.teamName} 
+      <Arrow isClicked={this.state.isClicked}/>{this.props.teamName} 
      </li>   
       <ol className={this.toggleClass()}>
-        {Object.keys(this.state.players).map((player,index)=> <Player key={index} name={player} classname={this.SpaceToHyphen(this.props.teamName)}/> )}
+        {Object.keys(this.state.players).map((player,index)=> <Player key={index} name={player} classname={this.SpaceToHyphen(this.props.teamName)} playerDetails={this.state.players[player]}/> )}
       </ol>
      </div>
      )

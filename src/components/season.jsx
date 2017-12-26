@@ -1,6 +1,8 @@
 import React from 'react'
 
 import Team from './team'
+import Arrow from './arrow'
+
 
 export default class Season extends React.Component{
   constructor(props){
@@ -36,6 +38,7 @@ export default class Season extends React.Component{
     return(
     <div className="season">  
       <li className="first" onClick={()=>{this.setState({isClicked:!this.state.isClicked});this.getTeams(this.props.season)}}  id={this.props.id}>
+        <Arrow isClicked={this.state.isClicked}/>
         {this.props.season}
       </li>
       <ul className={this.toggleClass()}>
