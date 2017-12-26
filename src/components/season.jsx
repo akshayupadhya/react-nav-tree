@@ -1,7 +1,9 @@
 import React from 'react'
+var classNames = require('classnames');
 
 import Team from './team'
 import Arrow from './arrow'
+import {getTeams} from '../js/ajaxCalls'
 
 
 export default class Season extends React.Component{
@@ -11,38 +13,34 @@ export default class Season extends React.Component{
       isClicked:false,
       teams:[]
     }
-    this.toggleClass=this.toggleClass.bind(this)
-    this.getTeams=this.getTeams.bind(this)
-  }
-  toggleClass(){
-    //console.log('clicked')
-    if(!this.state.isClicked){
-      return "d-none second  "
-    }else{
-      return "second"
-    }
+    
   }
 
-  getTeams(season){
-    fetch(`http://localhost:5000/teams?season=${season}`)
-    .then(res=>res.json())
+  
+  SeasonClick=()=>{
+    this.setState({isClicked:!this.state.isClicked});
+    getTeams(this.props.season)
     .then(teams=>{
       //console.log(teams)
       this.setState({teams})
+      
     })
     .catch(e=>console.log(e))
   }
 
-
   render(){
+    let TeamsClass=classNames({
+      'second':true,
+      'd-none':!this.state.isClicked
+    })
     return(
     <div className="season">  
-      <li className="first" onClick={()=>{this.setState({isClicked:!this.state.isClicked});this.getTeams(this.props.season)}}  id={this.props.id}>
+      <li className="first" onClick={this.SeasonClick}  id={this.props.id}>
         <Arrow isClicked={this.state.isClicked}/>
         {this.props.season}
       </li>
-      <ul className={this.toggleClass()}>
-          {this.state.teams.map((team,index)=> < Team teamName={team} season={this.props.season} key={index}/>)}
+      <ul className={TeamsClass}>
+          {this.state.teams.map((team,index)=> < Team teamName={team} season={this.props.season} setPlayer={this.props.setPlayer} key={index}/>)}
       </ul>
     </div>
     )

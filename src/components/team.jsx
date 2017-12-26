@@ -1,7 +1,11 @@
 import React from 'react'
+// import * as classNames from 'classnames'
+let classNames = require('classnames')
 
 import Player from './player'
 import Arrow from './arrow'
+import {SpaceToHyphen} from '../js/utils'
+import {getPlayers} from '../js/ajaxCalls'
 
 
 export default class Team extends React.Component{
@@ -12,39 +16,38 @@ export default class Team extends React.Component{
       players:{},
       playerNames:[]
     }
-    this.toggleClass=this.toggleClass.bind(this)
-    this.getPlayers=this.getPlayers.bind(this)
+    
   }
-  SpaceToHyphen(name){return name.replace(/\s+/g, '-')}
-  getPlayers(season,team){
-    fetch(`http://localhost:5000/players?season=${season}&team=${this.SpaceToHyphen(team)}`)
+  
+
+  getPlayers=(season,team)=>{
+    fetch(`http://localhost:5000/players?season=${season}&team=${SpaceToHyphen(team)}`)
     .then(res=>res.json())
+  }
+  
+  TeamCLick=()=>{
+    getPlayers(this.props.season,this.props.teamName)
     .then(players=>{
-      console.log(players)
+      //console.log(players)
       this.setState({players})
     })
+    this.setState({isClicked:!this.state.isClicked})
   }
-  toggleClass(){
-    //console.log('clicked')
-    if(!this.state.isClicked){
-      return "d-none   "
-    }else{
-      return ""
-    }
-  }
-
  render(){
+  let PlayersClass=classNames({
+    'second':true,
+    'd-none':!this.state.isClicked
+  })
    return(
      <div className="players">
-   
-     <li className="team" onClick={()=>{this.getPlayers(this.props.season,this.props.teamName);this.setState({isClicked:!this.state.isClicked})}}>
-      <Arrow isClicked={this.state.isClicked}/>{this.props.teamName} 
-     </li>   
-      <ol className={this.toggleClass()}>
-        {Object.keys(this.state.players).map((player,index)=> <Player key={index} name={player} classname={this.SpaceToHyphen(this.props.teamName)} playerDetails={this.state.players[player]}/> )}
+      <li className="team" onClick={this.TeamCLick}>
+        <Arrow isClicked={this.state.isClicked}/>{this.props.teamName} 
+      </li>   
+      <ol className={PlayersClass}>
+        {Object.keys(this.state.players).map((player,index)=> <Player key={index} name={player} setPlayer={this.props.setPlayer} classname={SpaceToHyphen(this.props.teamName)} playerDetails={this.state.players[player]}/> )}
       </ol>
      </div>
-     )
+    )
  }
 }
 

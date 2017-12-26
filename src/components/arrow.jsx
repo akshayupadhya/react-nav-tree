@@ -5,14 +5,14 @@ export default class Arrow extends React.Component{
     super(props)
     
   }
-  toggleArrow(){
+  addClass(){
     if(this.props.isClicked){
       return "rotated"
     }return ""
   }
   render(){
     return(
-      <img className={this.toggleArrow()} id="img0" onClick={()=>this.setState({isClicked:!this.state.isClicked})}src="https://www.techwalla.com/ui/images/icons/down4.svg"/>
+      <img className={this.addClass()} id="img0" src="https://www.techwalla.com/ui/images/icons/down4.svg"/>
     )
   }
 }
