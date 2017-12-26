@@ -27,6 +27,7 @@ export default class Team extends React.Component{
   
   TeamCLick=()=>{
     getPlayers(this.props.season,this.props.teamName)
+    //.then(r=>r.json())
     .then(players=>{
       //console.log(players)
       this.setState({players})

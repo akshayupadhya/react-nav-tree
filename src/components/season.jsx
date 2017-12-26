@@ -40,7 +40,7 @@ export default class Season extends React.Component{
         {this.props.season}
       </li>
       <ul className={TeamsClass}>
-          {this.state.teams.map((team,index)=> < Team teamName={team} season={this.props.season} setPlayer={this.props.setPlayer} key={index}/>)}
+          {this.state.teams.map((team,index)=> <Team teamName={team} season={this.props.season} setPlayer={this.props.setPlayer} key={index}/>)}
       </ul>
     </div>
     )

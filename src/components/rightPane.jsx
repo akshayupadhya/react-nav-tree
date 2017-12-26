@@ -4,11 +4,9 @@ import {AddEconomy,AddStrikeRate} from '../js/utils'
 
 export default class RightPane extends React.Component{
   render(){
-    console.log(this.props.player)
     return(
       <div >      
           <h1>{this.props.name}</h1>
-          <br/>
           <table  id="player">
             <thead>
               <tr>
